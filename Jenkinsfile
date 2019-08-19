@@ -5,14 +5,14 @@ pipeline {
             steps {
 				bat "mvn clean package"
             }
-        }
 
-        post {
-            success {
-                echo 'Now Archiving ....'
+			post {
+				success {
+					echo 'Now Archiving ....'
 
-                archiveArtifacts artifacts : '**/*.war'
-            }
-        }
-    }
+					archiveArtifacts artifacts : '**/*.war'
+				}
+			}
+		}
+	}
 }
