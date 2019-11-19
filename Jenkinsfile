@@ -18,33 +18,5 @@ pipeline {
                 }
             }
         }
- 
-        stage ('Deploy Build in Staging Area'){
-            steps{
- 
-                build job : 'Deploy_Staging_Area_Pipeline'
- 
-            }
-        }
- 
-        stage ('Deploy to Production'){
-            steps{
-                timeout (time: 5, unit:'DAYS'){
-                    input message: 'Approve PRODUCTION Deployment?'
-                }
-                
-                build job : 'Deploy_to_Prod_Pipeline'
-            }
- 
-            post{
-                success{
-                    echo 'Deployment on PRODUCTION is Successful'
-                }
- 
-                failure{
-                    echo 'Deployement Failure on PRODUCTION'
-                }
-            }
-        }
     }
 }
